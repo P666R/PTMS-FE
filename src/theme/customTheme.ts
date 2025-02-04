@@ -1,5 +1,6 @@
 import { createTheme, ThemeOptions } from '@mui/material';
 
+// ! Custom theme to override certain colors from MUI default theme
 export const customTheme: ThemeOptions = createTheme({
   palette: {
     mode: 'dark',
