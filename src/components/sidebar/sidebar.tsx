@@ -18,7 +18,7 @@ export const Sidebar: FC = (): ReactElement => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-      <Profile />
+      <Profile name="Ram" />
     </Grid>
   );
 };
