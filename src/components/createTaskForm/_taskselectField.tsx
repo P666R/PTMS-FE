@@ -9,7 +9,9 @@ import {
 import PropTypes from 'prop-types';
 import { ISelectField } from './interfaces/ISelectField';
 
-export const TaskSelectField: FC<ISelectField> = (props): ReactElement => {
+export const TaskSelectField: FC<ISelectField> = (
+  props,
+): ReactElement => {
   const {
     disabled = false,
     onChange = (e: SelectChangeEvent) => console.log(e),

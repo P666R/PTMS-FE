@@ -36,7 +36,10 @@ export const CreateTaskForm: FC = (): ReactElement => {
             label="Status"
             name="status"
             items={[
-              { value: Status.todo, label: Status.todo.toUpperCase() },
+              {
+                value: Status.todo,
+                label: Status.todo.toUpperCase(),
+              },
               {
                 value: Status.inProgress,
                 label: Status.inProgress.toUpperCase(),
@@ -51,9 +54,18 @@ export const CreateTaskForm: FC = (): ReactElement => {
             label="Priority"
             name="priority"
             items={[
-              { value: Priority.low, label: Priority.low.toUpperCase() },
-              { value: Priority.normal, label: Priority.normal.toUpperCase() },
-              { value: Priority.high, label: Priority.high.toUpperCase() },
+              {
+                value: Priority.low,
+                label: Priority.low.toUpperCase(),
+              },
+              {
+                value: Priority.normal,
+                label: Priority.normal.toUpperCase(),
+              },
+              {
+                value: Priority.high,
+                label: Priority.high.toUpperCase(),
+              },
             ]}
           />
         </Stack>

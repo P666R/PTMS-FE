@@ -6,7 +6,9 @@ interface IProfile {
   name?: string;
 }
 
-export const Profile: FC<IProfile> = (props): ReactElement => {
+export const Profile: FC<IProfile> = (
+  props,
+): ReactElement => {
   const { name = 'P666R' } = props;
   return (
     <Box

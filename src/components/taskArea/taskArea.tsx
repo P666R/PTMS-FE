@@ -1,12 +1,45 @@
 import { FC, ReactElement } from 'react';
-import Grid from '@mui/material/Grid2';
+import { Grid2, Box } from '@mui/material';
+import { format } from 'date-fns';
+import { TaskCounter } from '../taskCounter/taskCounter';
 
 export const TaskArea: FC = (): ReactElement => {
   return (
-    <Grid
+    <Grid2
       size={{ md: 8 }}
       px={4}>
-      <h2>Task Area</h2>
-    </Grid>
+      <Box
+        mb={8}
+        px={4}>
+        <h2>
+          Status Of Your Tasks As On{' '}
+          {format(new Date(), 'PPPP')}
+        </h2>
+      </Box>
+      <Grid2
+        container
+        display="flex"
+        justifyContent="center">
+        <Grid2
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-around"
+          alignItems="center"
+          size={{ md: 10, xs: 12 }}
+          mb={8}>
+          <TaskCounter />
+          <TaskCounter />
+          <TaskCounter />
+        </Grid2>
+        <Grid2
+          display="flex"
+          flexDirection="column"
+          size={{ md: 8, xs: 10 }}>
+          <Box>Task 1</Box>
+          <Box>Task 2</Box>
+          <Box>Task 3</Box>
+        </Grid2>
+      </Grid2>
+    </Grid2>
   );
 };
