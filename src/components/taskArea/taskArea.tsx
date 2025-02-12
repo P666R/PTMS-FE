@@ -12,10 +12,7 @@ export const TaskArea: FC = (): ReactElement => {
       <Box
         mb={8}
         px={4}>
-        <h2>
-          Status Of Your Tasks As On{' '}
-          {format(new Date(), 'PPPP')}
-        </h2>
+        <h2>Status Of Your Tasks As On {format(new Date(), 'PPPP')}</h2>
       </Box>
       <Grid2
         container

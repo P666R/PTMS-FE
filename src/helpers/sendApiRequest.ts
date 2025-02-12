@@ -1,9 +1,6 @@
 type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
-function returnCorrectRequest(
-  method: Method,
-  data: unknown,
-): RequestInit {
+function returnCorrectRequest(method: Method, data: unknown): RequestInit {
   const headers = { 'Content-Type': 'application/json' };
   return method === 'GET'
     ? { method, headers }
@@ -15,15 +12,10 @@ export async function sendAPiRequest<T>(
   method: Method,
   data: unknown = {},
 ): Promise<T> {
-  const response = await fetch(
-    url,
-    returnCorrectRequest(method, data),
-  );
+  const response = await fetch(url, returnCorrectRequest(method, data));
 
   if (!response.ok) {
-    throw new Error(
-      `An error has occurred: ${response.status}`,
-    );
+    throw new Error(`An error has occurred: ${response.status}`);
   }
 
   return response.json() as Promise<T>;

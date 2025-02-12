@@ -3,7 +3,6 @@
   "tabWidth": 2,
   "singleQuote": true,
   "bracketSameLine": true,
-  "printWidth": 60,
   "singleAttributePerLine": true,
   "semi": true
 }

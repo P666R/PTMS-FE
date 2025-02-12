@@ -1,15 +1,10 @@
 import { FC, ReactElement } from 'react';
-import {
-  DesktopDatePicker,
-  LocalizationProvider,
-} from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { IDateField } from './interfaces/IDateField';
 import PropTypes from 'prop-types';
 
-export const TaskDateField: FC<IDateField> = (
-  props,
-): ReactElement => {
+export const TaskDateField: FC<IDateField> = (props): ReactElement => {
   const {
     value = new Date(),
     disabled = false,

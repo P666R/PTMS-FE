@@ -1,8 +1,6 @@
 import { Priority } from '../../createTaskForm/enums/Priority';
 
-export const renderPriorityBorderColor = (
-  priority: string,
-): string => {
+export const renderPriorityBorderColor = (priority: string): string => {
   switch (priority) {
     case Priority.high:
       return 'error.light';

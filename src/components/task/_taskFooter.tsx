@@ -1,16 +1,9 @@
 import { FC, ReactElement } from 'react';
-import {
-  Box,
-  Button,
-  Switch,
-  FormControlLabel,
-} from '@mui/material';
+import { Box, Button, Switch, FormControlLabel } from '@mui/material';
 import { ITaskFooter } from './interfaces/ITaskFooter';
 import PropTypes from 'prop-types';
 
-export const TaskFooter: FC<ITaskFooter> = (
-  props,
-): ReactElement => {
+export const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
   const {
     onStatusChange = (e) => console.log(e),
     onClick = (e) => console.log(e),

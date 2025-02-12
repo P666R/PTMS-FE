@@ -6,9 +6,7 @@ import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
 import { emitCorrectLabel } from './helpers/emitCorrectLabel';
 import PropTypes from 'prop-types';
 
-export const TaskCounter: FC<ITaskCounter> = (
-  props,
-): ReactElement => {
+export const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
   const { status = Status.todo, count = 0 } = props;
 
   return (
@@ -45,9 +43,5 @@ export const TaskCounter: FC<ITaskCounter> = (
 
 TaskCounter.propTypes = {
   count: PropTypes.number,
-  status: PropTypes.oneOf([
-    Status.todo,
-    Status.inProgress,
-    Status.completed,
-  ]),
+  status: PropTypes.oneOf([Status.todo, Status.inProgress, Status.completed]),
 };

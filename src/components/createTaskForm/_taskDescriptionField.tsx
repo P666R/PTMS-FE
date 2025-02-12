@@ -3,12 +3,11 @@ import { FC, ReactElement } from 'react';
 import { ITextField } from './interfaces/ITextField';
 import PropTypes from 'prop-types';
 
-export const TaskDescriptionField: FC<ITextField> = (
-  props,
-): ReactElement => {
+export const TaskDescriptionField: FC<ITextField> = (props): ReactElement => {
   const {
     disabled = false,
     onChange = (e) => console.log(e),
+    value = '',
   } = props;
   return (
     <TextField
@@ -21,6 +20,7 @@ export const TaskDescriptionField: FC<ITextField> = (
       multiline
       rows={4}
       fullWidth
+      value={value}
       disabled={disabled}
       onChange={onChange}
     />

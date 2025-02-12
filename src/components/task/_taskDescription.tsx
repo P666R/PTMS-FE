@@ -3,9 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { ITaskDescription } from './interfaces/ITaskDescription';
 import PropTypes from 'prop-types';
 
-export const TaskDescription: FC<ITaskDescription> = (
-  props,
-): ReactElement => {
+export const TaskDescription: FC<ITaskDescription> = (props): ReactElement => {
   const { description = 'Default description' } = props;
 
   return (
