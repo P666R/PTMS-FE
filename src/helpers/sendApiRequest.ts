@@ -7,7 +7,7 @@ function returnCorrectRequest(method: Method, data: unknown): RequestInit {
     : { method, headers, body: JSON.stringify(data) };
 }
 
-export async function sendAPiRequest<T>(
+export async function sendApiRequest<T>(
   url: string,
   method: Method,
   data: unknown = {},

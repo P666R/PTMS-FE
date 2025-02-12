@@ -15,7 +15,7 @@ import { TaskSelectField } from './_taskselectField';
 import { Status } from './enums/Status';
 import { Priority } from './enums/Priority';
 import { useMutation } from '@tanstack/react-query';
-import { sendAPiRequest } from '../../helpers/sendApiRequest';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../taskArea/interfaces/ICreateTask';
 
 export const CreateTaskForm: FC = (): ReactElement => {
@@ -28,7 +28,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
 
   const createTaskMutation = useMutation({
     mutationFn: (data: ICreateTask) =>
-      sendAPiRequest('http://localhost:3200/api/v1/tasks', 'POST', data),
+      sendApiRequest('http://localhost:3200/api/v1/tasks', 'POST', data),
   });
 
   useEffect(() => {

@@ -1,10 +1,13 @@
 import { FC, ReactElement } from 'react';
 import { Box, Button, Switch, FormControlLabel } from '@mui/material';
 import { ITaskFooter } from './interfaces/ITaskFooter';
+import { Status } from '../createTaskForm/enums/Status';
 import PropTypes from 'prop-types';
 
 export const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
   const {
+    id,
+    status,
     onStatusChange = (e) => console.log(e),
     onClick = (e) => console.log(e),
   } = props;
@@ -20,8 +23,8 @@ export const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
         control={
           <Switch
             color="warning"
-            onChange={(e) => onStatusChange(e)}
-            inputProps={{ 'aria-label': 'controlled' }}
+            onChange={(e) => onStatusChange(e, id)}
+            defaultChecked={status === Status.inProgress}
           />
         }
       />
@@ -30,7 +33,7 @@ export const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
         color="success"
         size="small"
         sx={{ color: '#fff' }}
-        onClick={(e) => onClick(e)}>
+        onClick={(e) => onClick(e, id)}>
         Mark Complete
       </Button>
     </Box>
@@ -38,6 +41,8 @@ export const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
 };
 
 TaskFooter.propTypes = {
+  id: PropTypes.string.isRequired,
+  status: PropTypes.string,
   onStatusChange: PropTypes.func,
   onClick: PropTypes.func,
 };
