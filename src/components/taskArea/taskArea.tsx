@@ -1,4 +1,11 @@
-import { FC, ReactElement, useCallback, useMemo } from 'react';
+import {
+  FC,
+  ReactElement,
+  useCallback,
+  useMemo,
+  useContext,
+  useEffect,
+} from 'react';
 import { Grid2, Box, Alert, LinearProgress } from '@mui/material';
 import { format } from 'date-fns';
 import { TaskCounter } from '../taskCounter/taskCounter';
@@ -9,9 +16,12 @@ import { ITaskApi } from './interfaces/ITaskApi';
 import { Status } from '../createTaskForm/enums/Status';
 import { IUpdateTask } from '../createTaskForm/interfaces/IUpdateTask';
 import { countTasks } from './helpers/countTasks';
+import { TaskStatusChangedContext } from '../../context';
 
 export const TaskArea: FC = (): ReactElement => {
-  const { data, error, isLoading } = useQuery({
+  const tasksUpdatedContext = useContext(TaskStatusChangedContext);
+
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ['tasks'],
     queryFn: async () =>
       await sendApiRequest<ITaskApi[]>(
@@ -23,7 +33,15 @@ export const TaskArea: FC = (): ReactElement => {
   const updateTaskMutation = useMutation({
     mutationFn: (data: IUpdateTask) =>
       sendApiRequest('http://localhost:3200/api/v1/tasks', 'PATCH', data),
+    onSuccess: () => {
+      tasksUpdatedContext.toggle();
+      refetch();
+    },
   });
+
+  useEffect(() => {
+    refetch();
+  }, [tasksUpdatedContext.updated, refetch]);
 
   const onStatusChangeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, id: string) => {

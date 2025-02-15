@@ -1,4 +1,11 @@
-import { FC, ReactElement, useState, useEffect, useCallback } from 'react';
+import {
+  FC,
+  ReactElement,
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+} from 'react';
 import {
   Box,
   Stack,
@@ -17,6 +24,7 @@ import { Priority } from './enums/Priority';
 import { useMutation } from '@tanstack/react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../taskArea/interfaces/ICreateTask';
+import { TaskStatusChangedContext } from '../../context';
 
 export const CreateTaskForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<string>('');
@@ -26,26 +34,30 @@ export const CreateTaskForm: FC = (): ReactElement => {
   const [priority, setPriority] = useState<string>(Priority.normal);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const tasksUpdatedContext = useContext(TaskStatusChangedContext);
+
   const createTaskMutation = useMutation({
     mutationFn: (data: ICreateTask) =>
       sendApiRequest('http://localhost:3200/api/v1/tasks', 'POST', data),
+    onSuccess: () => {
+      setShowSuccess(true);
+      tasksUpdatedContext.toggle();
+    },
   });
 
   useEffect(() => {
-    if (createTaskMutation.isSuccess) {
-      setShowSuccess(true);
+    if (showSuccess) {
+      setTitle('');
+      setDescription('');
+      setDate(new Date());
+      setStatus(Status.todo);
+      setPriority(Priority.normal);
       const timer = setTimeout(() => {
         setShowSuccess(false);
-
-        setTitle('');
-        setDescription('');
-        setDate(new Date());
-        setStatus(Status.todo);
-        setPriority(Priority.normal);
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [createTaskMutation.isSuccess]);
+  }, [showSuccess]);
 
   const createTaskHandler = useCallback(() => {
     if (!title || !description || !date) {
